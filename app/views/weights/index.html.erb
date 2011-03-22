@@ -100,7 +100,7 @@
           <div class="content">
             <% form_for :dump, :url=>{:controller=>"weights", :action=>"csv_import"}, :html => { :multipart => true } do |f| -%>
               <div style="overflow:hidden;">
-                <% if Withings.authorized?(current_user.withings_userid, current_user.withings_publickey) %>
+                  <% if current_user.withings_user? %>
                   <%= link_to 'Import All Withings Data', '/withings/import', {:class => "sml-btn blue"} %>
                 <% end %>
               </div>

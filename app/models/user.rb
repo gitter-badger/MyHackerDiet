@@ -20,6 +20,11 @@ class User < ActiveRecord::Base
     return age
   end
 
+  def withings_user?
+    false if withings_userid.nil? or withings_publickey.nil?
+    true
+  end
+
   def self.create_month_message(level, message)
 
     User.all.each do |usr|

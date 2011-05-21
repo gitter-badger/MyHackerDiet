@@ -1,9 +1,9 @@
-Hi <%=h @wlog.userid %>!<br /><br />
+Hi there!<br /><br />
 
-Withings has contacted us with a new measurements record at <%=h @wlog.sdate %>.<br />
+Withings has contacted us with a new measurement, taken on <strong><%=h @wlog.sdate.strftime("%Y-%m-%d") %></strong> at <strong><%=h @wlog.sdate.strftime("%T") %></strong><br />
 Please see your <%= link_to 'Weights Log', weights_url %> to see how well you are doing!<br /><br />
 
 Your Friends,<br />
 
-&nbsp;&nbsp;&nbsp;-- MyHackerDiet.com
+&nbsp;&nbsp;&nbsp;-- <%= link_to 'MyHackerDiet.com', 'http://myhackerdiet.com' %>
 

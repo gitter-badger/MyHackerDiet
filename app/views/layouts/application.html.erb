@@ -47,12 +47,10 @@
             <% end %>
             Last Sign in: <%=h current_user.last_sign_in_at %>
           <% else %>
-            SIGN UP NOW!
-            <% form_for("user", :url => user_registration_path) do |f| %>
-              <span class="textBG"><%= f.text_field :email, :class => "box" %></span><br />
-              <span class="textBG"><%= f.password_field :password, :class => "box" %> </span><br />
-              <span class="textBG"><%= f.password_field :password_confirmation, :class=>"box" %></span><br />
-              <%= f.submit '', :class => "form_submit" %>
+            <% form_for("user", :url => user_session_path) do |f| %>
+              <%= f.text_field :email, :placeholder => "Email Address", :size => 20 %><br />
+              <%= f.password_field :password, :placeholder => "Password", :size => 20 %><br />
+              <%= f.submit 'Login', :class => 'green awesome', :width => '100%' %>
             <% end %>
           <% end %>
         </div>
@@ -73,12 +71,6 @@
             <% end %>
           <% else %>
             <li><%= link_to 'Create an Account', new_user_registration_path %></li>
-            <li><% form_for("user", :url => user_session_path) do |f| %>
-              Email: <%= f.text_field :email %><br />
-              Password: <%= f.password_field :password %>
-              <%= f.submit 'Login', :class => 'small green awesome', :width => '100%' %>
-            <% end %>
-            </li>
           <% end %>
         </ul>
         <!-- navigation END here -->

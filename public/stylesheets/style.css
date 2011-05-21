@@ -72,7 +72,7 @@ ul.sf-menu {background:url(/images/nav-bg.png) no-repeat top left; height:42px; 
 #login-holder a{color: red; font-weight: normal; font-style: italic;}
 #login-holder .sml-btn {margin-right:0;}
 
-#login-box {width:230px;  padding:18px; -moz-border-radius:10px; -webkit-border-radius:10px; border-radius:10px; overflow:hidden;
+#login-box {width:280px;  padding:18px; -moz-border-radius:10px; -webkit-border-radius:10px; border-radius:10px; overflow:hidden;
 background:#eeeeee url(/images/login/login-bg2.png) repeat-x left bottom;}
 
 #login-box label {font-size:11px; text-transform:uppercase; font-weight:bold; color:#333;}

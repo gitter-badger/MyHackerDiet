@@ -1,28 +1,21 @@
-ActionController::Routing::Routes.draw do |map|
-  map.resources :public
+Mhd::Application.routes.draw do
+  resources :public
+  devise_for :users
 
-  map.devise_for :users
+  #resources :sessions
+  resources :weights
+  resources :steps
+  resources :withings_log
 
-  map.resources :sessions  
-  map.resources :weights
-  map.resources :steps
-  map.resources :withings_log
+  match 'import_weight_csv', '/importWeight', :controller => 'weights', :action => 'csv_import'
+  match 'import_steps_csv'  '/importStep', :controller => 'steps', :action => 'csv_import'
+  match 'withings' '/withings', :controller => 'withings', :action => 'log'
+  match 'withings_import' '/withings/import', :controller => 'withings', :action => 'import'
 
-  map.import_weight_csv '/importWeight', :controller => 'weights', :action => 'csv_import'
-  map.import_steps_csv  '/importStep', :controller => 'steps', :action => 'csv_import'
-  map.withings '/withings', :controller => 'withings', :action => 'log'
-  map.withings_import '/withings/import', :controller => 'withings', :action => 'import'
+  match 'weight_graphs' '/weight_graphs', :controller => 'weights', :action => 'weight_graphs'
 
-  map.weight_graphs '/weight_graphs', :controller => 'weights', :action => 'weight_graphs'
+  get 'static/home'
+  get 'static/about'
 
-  map.with_options :controller => 'static' do |static|
-    static.home  '', :action => 'home'
-    static.about '', :action => 'about'
-  end
-
-  map.root :controller => "static", :action => "home"
-
-  map.connect ':controller/:action/:id'
-  map.connect ':controller/:action/:id.:format'
-
+  root :to => "static#home"
 end

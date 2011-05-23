@@ -33,7 +33,7 @@
       <div class="main_container">
         <!-- logo START here -->
         <div id="logo">
-          <%= link_to '<img src="/images/logo2.png" alt="" />', root_url %>
+          <%= link_to( image_tag( '/images/logo2.png' ), root_url ) %>
         </div>
         <!-- logo END here -->
         <div id="login-holder">
@@ -47,7 +47,7 @@
             <% end %>
             Last Sign in: <%=h current_user.last_sign_in_at %>
           <% else %>
-            <% form_for("user", :url => user_session_path) do |f| %>
+            <%= form_for("user", :url => user_session_path) do |f| %>
               <%= f.text_field :email, :placeholder => "Email Address", :size => 20 %><br />
               <%= f.password_field :password, :placeholder => "Password", :size => 20 %><br />
               <%= f.submit 'Login', :class => 'green awesome', :width => '100%' %>
@@ -59,11 +59,11 @@
           <% if current_user %>
             <li><%= link_to "Edit Account", edit_user_registration_path %></li>
             <% if current_user.steps %>
-              <li><%= link_to "Log Steps", {:controller => 'steps'} %></li>
+              <li><%= link_to "Log Steps", steps_path %></li>
             <% end %>
-            <li><%= link_to "Log Weights", {:controller => 'weights'} %></li>
+            <li><%= link_to "Log Weights", weights_path %></li>
             <% if current_user.withings_userid && current_user.withings_publickey %>
-              <li><%= link_to "Withings API Log", {:controller => 'withings_log'} %></li>
+              <li><%= link_to "Withings API Log", withings_log_index_path %></li>
             <% end %>
             <li><%= link_to "Logout", destroy_user_session_path %></li>
             <% if mobile_device? %>
@@ -139,7 +139,7 @@
     </div>
     <!-- bottom-footer END here -->
     </footer>
-    <% if RAILS_ENV == 'production' %>
+    <% if Rails.env == 'production' %>
       <%= render :partial => 'shared/analytics' %>
       <!-- Piwik -->
       <script type="text/javascript">

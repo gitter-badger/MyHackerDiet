@@ -18,7 +18,7 @@
       <h5>Create An Account</h5>
     </div>
     <div class="content">
-      <% form_for("user", :url => user_registration_path) do |f| %>
+      <%= form_for("user", :url => user_registration_path) do |f| %>
         <%= f.text_field :email, :id => "login-username", :placeholder => "Email Address" %><br />
         <%= f.password_field :password, :id => "login-password", :placeholder => "Password" %><br />
         <%= f.password_field :password_confirmation, :id=>"login-password", :placeholder => "Confirm Password" %><br />

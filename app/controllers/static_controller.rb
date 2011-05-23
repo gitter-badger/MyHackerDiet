@@ -2,6 +2,15 @@ class StaticController < ApplicationController
   def about
   end
 
+  def show
+  end
+
+  def edit
+  end
+
+  def index
+  end
+
   def home
     if current_user
 

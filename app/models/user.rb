@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   has_many :weights
   has_many :system_messages, :as => :messageable
+  has_and_belongs_to_many :friends, :class_name => 'User', :foreign_key => :friend_id
   before_save :update_publicid
 
   # Include default devise modules. Others available are:
@@ -105,5 +106,9 @@ class User < ActiveRecord::Base
   def update_publicid
     digest_str = "#{email}-#{id}-#{email}"
     self.public_id = Digest::MD5.hexdigest(digest_str)[0..5]
+  end
+
+  def current_weight
+    Weight.find_by_user_id(self.id, :order => 'rec_date DESC')
   end
 end

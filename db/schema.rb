@@ -77,6 +77,13 @@ ActiveRecord::Schema.define(:version => 20110102161658) do
   add_index "users", ["public_id"], :name => "index_users_on_public_id", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
+  create_table "users_users", :id => false, :force => true do |t|
+    t.integer  "user_id"
+    t.integer  "friend_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "weights", :force => true do |t|
     t.date     "rec_date"
     t.datetime "created_at"

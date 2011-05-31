@@ -6,6 +6,9 @@ Mhd::Application.routes.draw do
   resources :weights
   resources :steps
   resources :withings_log
+  resource :withings do
+    get 'import'
+  end
 
   match 'import_weight_csv', '/importWeight', :controller => 'weights', :action => 'csv_import'
   match 'import_steps_csv'  '/importStep', :controller => 'steps', :action => 'csv_import'

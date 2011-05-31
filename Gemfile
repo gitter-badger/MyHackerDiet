@@ -8,6 +8,7 @@ gem 'rails', '3.0.7'
 gem 'mysql'
 gem 'devise'
 gem 'agnostic-will_paginate'
+gem 'wiscale'
 
 # Use unicorn as the web server
 # gem 'unicorn'

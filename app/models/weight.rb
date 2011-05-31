@@ -1,6 +1,6 @@
 class Weight < ActiveRecord::Base
   belongs_to :user
-  before_save :fill_weight_gaps
+  validate_on_create :fill_weight_gaps
 
   def bmi
     begin
@@ -25,7 +25,7 @@ class Weight < ActiveRecord::Base
   def fill_weight_gaps
     max_rec = Weight.find_by_user_id(user_id, :limit => 1, :order => 'rec_date DESC')
 
-    if max_rec == nil || (max_rec.rec_date - rec_date).abs == 1
+    if max_rec == nil || max_rec.rec_type == RECTYPE['filler'] || (max_rec.rec_date - rec_date).abs == 1
       return
     end
 
@@ -46,7 +46,7 @@ class Weight < ActiveRecord::Base
       filler.weight = max_rec.weight + (weight_per_day * day)
       filler.bodyfat = max_rec.bodyfat + (bodyfat_per_day * day) if bodyfat_diff != nil
       filler.rec_type = RECTYPE['filler']
-      filler.send(:create_without_callbacks)
+      filler.save
       filler.calc_avg_weight
     end
 
@@ -55,8 +55,7 @@ class Weight < ActiveRecord::Base
   def calc_avg_weight
     datapool = Weight.find_all_by_user_id(user_id, :limit => 20, :conditions => ["rec_date <= ?", rec_date], :order => 'rec_date DESC')
     self[:avg_weight] = averageweight datapool
-
-    self.send(:update_without_callbacks)
+    save
   end
 
   private

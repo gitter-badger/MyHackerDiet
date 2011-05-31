@@ -167,7 +167,7 @@ end
         n=n+1
         GC.start if n%50==0
       end
-      flash.now[:message]="CSV Import Successful,  #{n} new records added to data base"
+      flash[:notice]="CSV Import Successful,  #{n} new records added to data base"
     end
     redirect_to :action=>"index"
   end

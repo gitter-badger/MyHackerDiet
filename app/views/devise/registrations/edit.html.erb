@@ -1,6 +1,5 @@
 
 <% form_for resource_name, resource, :url => registration_path(resource_name), :html => { :method => :put } do |f| -%>
-  <%= f.error_messages %>
 
           <table border="0">
             <tr><th colspan="2">Login Credentials</th></tr>
@@ -83,7 +82,7 @@
             <!-- <tr>
               <td><strong>Status</strong><br />
                 <center><small>
-                <%= link_to_remote("Validate",
+                <%= link_to("Validate",
                                    {:url => {:controller => 'withings', :action => 'check_status'},
                   :loading => "document.getElementById('withings_status').innerHTML = '<img src=\"/images/loader.gif\" />';",
                   :with => 'serialize_fields()',

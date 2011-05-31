@@ -1,5 +1,5 @@
 
-<% form_for resource_name, resource, :url => registration_path(resource_name), :html => { :method => :put } do |f| -%>
+<%= form_for resource, :as => resource_name, :url => registration_path(resource_name), :html => { :method => :put } do |f| -%>
 
           <table border="0">
             <tr><th colspan="2">Login Credentials</th></tr>

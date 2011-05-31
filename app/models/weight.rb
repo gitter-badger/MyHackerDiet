@@ -1,6 +1,6 @@
 class Weight < ActiveRecord::Base
   belongs_to :user
-  validate_on_create :fill_weight_gaps
+  validate :fill_weight_gaps, :on => :create
 
   def bmi
     begin

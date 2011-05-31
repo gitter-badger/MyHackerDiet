@@ -33,7 +33,7 @@
     </tr>
   </thead>
   <tbody>
-    <% form_for(@weight) do |f| %>
+    <%= form_for(@weight) do |f| %>
       <tr>
         <%= f.hidden_field :user_id, :value=>current_user.id %>
         <td class='colfirst'>&nbsp;</td>
@@ -97,7 +97,7 @@
           </div>
 
           <div class="content">
-            <% form_for :dump, :url=>{:controller=>"weights", :action=>"csv_import"}, :html => { :multipart => true } do |f| -%>
+            <%= form_for :dump, :url=>{:controller=>"weights", :action=>"csv_import"}, :html => { :multipart => true } do |f| -%>
               <div style="overflow:hidden;">
                   <% if current_user.withings_user? %>
                   <%= link_to 'Import All Withings Data', '/withings/import', {:class => "sml-btn blue"} %>

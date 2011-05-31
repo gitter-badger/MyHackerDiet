@@ -38,7 +38,7 @@
           <div class="content">
             <%= '--- you have no friends ---' if current_user.friends.empty? %>
             <% current_user.friends.each do |friend| %>
-              <%= link_to friend.email, "#{root_url}public/#{friend.public_id}" %> ( <%= friend.current_weight.avg_weight %> )
+              <%= link_to friend.email, "#{root_url}public/#{friend.public_id}" %> ( <%= friend.current_weight.avg_weight rescue "??" %> )
             <% end %>
           </div>
         </div>

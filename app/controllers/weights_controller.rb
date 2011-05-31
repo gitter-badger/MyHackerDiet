@@ -175,7 +175,7 @@ class WeightsController < ApplicationController
       w.save
     end
 
-    redirect_to :action=>"index"
+    redirect_to weights_url
   end
 end
 

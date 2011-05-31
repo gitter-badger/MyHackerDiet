@@ -27,7 +27,7 @@
 
         <% @steps.each do |step| %>
           <tr>
-            <td><%= link_to '<img src="/images/mini-icons/error.png" />', step, :confirm => 'Are you sure?', :method => :delete %></td>
+            <td><%= link_to( image_tag('/images/mini-icons/error.png'), step, :confirm => 'Are you sure?', :method => :delete ) %></td>
             <td nowrap="nowrap"><%=h step.rec_date %></td>
             <td><%=h step.steps %></td>
             <td><%=h step.mod_steps %></td>

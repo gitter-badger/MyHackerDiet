@@ -153,7 +153,7 @@ end
   end
 
   def csv_import 
-    @parsed_file=CSV.parse(params[:dump][:file])
+    @parsed_file=CSV.parse(params[:dump][:file].read)
     n=0
     @parsed_file.each  do |row|
       c=Step.new

@@ -44,18 +44,17 @@ begin
       Rake::Task['vlad:bundle'].invoke
     end
 
-    remote_task :dj_restart do
-      run "#{rvm_setup} && script/delayed_job restart"
-    end
+    #remote_task :dj_restart do
+      #run "#{rvm_setup} && script/delayed_job restart"
+    #end
 
-    remote_task :update_cron do
-      run "#{rvm_setup} && whenever --write"
-    end
+    #remote_task :update_cron do
+      #run "#{rvm_setup} && whenever --write"
+    #end
 
 
     task :deploy do
-      ['update', 'migrate', 'start_app',
-      'dj_restart', 'update_cron'].each do |t|
+      ['update', 'migrate', 'start_app'].each do |t|
         Rake::Task["vlad:#{t}"].invoke
       end
     end

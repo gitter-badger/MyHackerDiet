@@ -10,6 +10,10 @@ gem 'devise'
 gem 'agnostic-will_paginate'
 gem 'wiscale'
 
+gem 'vlad'
+gem 'vlad-thin'
+gem 'vlad-git'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 

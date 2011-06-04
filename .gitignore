@@ -4,4 +4,4 @@ coverage*
 *.un~
 *.swp
 .bundle
-Gemfile.lock
+.rvmrc

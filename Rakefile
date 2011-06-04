@@ -51,10 +51,14 @@ begin
     #remote_task :update_cron do
       #run "#{rvm_setup} && whenever --write"
     #end
+    
+    remote_task :unicorn_start do
+      run "#{rvm_setup} && bundle exec unicorn -c /home/myhackerdiet/current/config/unicorn.rb -D"
+    end
 
 
     task :deploy do
-      ['update', 'migrate', 'start_app'].each do |t|
+      ['update', 'migrate', 'unicorn_start'].each do |t|
         Rake::Task["vlad:#{t}"].invoke
       end
     end

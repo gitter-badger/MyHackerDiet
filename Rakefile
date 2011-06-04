@@ -23,7 +23,7 @@ begin
   namespace :vlad do
     def rvm_setup
       # loads RVM, which initializes environment and paths
-      init_rvm = "source /usr/local/lib/rvm"
+      init_rvm = "source /home/myhackerdiet/.rvm/scripts/rvm"
 
       # automatically trust the gemset in the .rvmrc file
       trust_rvm = "rvm rvmrc trust #{release_path}"

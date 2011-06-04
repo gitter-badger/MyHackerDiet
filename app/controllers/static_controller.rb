@@ -28,6 +28,16 @@ class StaticController < ApplicationController
         @current_diff = 0
       end
 
+        @graph_week = current_user.graph_code( 'Last Week', 1.week.ago, '400x150' )
+        @graph_two_weeks = current_user.graph_code( 'Last 2 Weeks', 2.weeks.ago, '400x150' )
+        @graph_two_months = current_user.graph_code( 'Last 2 Months', 2.months.ago, '400x150' )
+        @graph_three_months = current_user.graph_code( 'Last 3 Months', 3.months.ago, '400x150' )
+
+        @graph_week_big = current_user.graph_code( 'Last Week', 1.week.ago, '800x300' )
+        @graph_two_weeks_big = current_user.graph_code( 'Last 2 Weeks', 2.weeks.ago, '800x300' )
+        @graph_two_months_big = current_user.graph_code( 'Last 2 Months', 2.months.ago, '800x300' )
+        @graph_three_months_big = current_user.graph_code( 'Last 3 Months', 3.months.ago, '800x300' )
+
       # Step summary information
       begin
         @steps_7_days = Step.average(:steps, :conditions => ['user_id = ?', current_user.id], :limit => 7, :order => 'rec_date DESC')

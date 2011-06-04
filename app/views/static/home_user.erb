@@ -1,7 +1,27 @@
+<script src="/javascripts/prototype.js"></script>
+<script src="/javascripts/scriptaculous.js"></script>
+<script src="/javascripts/effects.js"></script>
+<script src="/javascripts/builder.js"></script>
+<script src="/javascripts/lightbox.js"></script>
 
 <div id='main-colum'>
   <h1>Welcome Back!</h1>
   It has been <%= "#{@last_weighin_days} day".pluralize %> since your last weigh-in.
+
+
+  <div align="center">
+    <a rel='lightbox' href="<%= @graph_week_big.to_s %>"><img src="<%= @graph_week.to_s %>" /></a>
+    <a rel='lightbox' href="<%= @graph_two_weeks_big.to_s %>"><img src="<%= @graph_two_weeks.to_s %>" /></a>
+  </div>
+  <div align="center">
+    <a rel='lightbox' href="<%= @graph_two_months_big.to_s %>"><img src="<%= @graph_two_months.to_s %>" /></a>
+    <a rel='lightbox' href="<%= @graph_three_months_big.to_s %>"<img src="<%= @graph_three_months.to_s %>" /></a>
+  </div>
+
+
+
+  <br /><br />
+
     <% if @steps_months == nil || @steps_months.size == 0 %>
       <i>Not enough data for trending</i>
     <% else %>

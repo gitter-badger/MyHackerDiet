@@ -31,7 +31,7 @@
     </div>
 
     <% if RAILS_ENV == 'production' %>
-      <%= render :partial => 'shared/analytics' %>
+      <%= render :partial => 'shared/analytics', :format => :html %>
       <!-- Piwik -->
       <script type="text/javascript">
       var pkBaseURL = (("https:" == document.location.protocol) ? "https://stats.digital-drip.com/" : "http://stats.digital-drip.com/");

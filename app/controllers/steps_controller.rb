@@ -12,11 +12,11 @@ class StepsController < ApplicationController
 
     respond_to do |format|
       format.html do
-        @steps = Step.find_all_by_user_id(current_user.id, :order => 'rec_date DESC')
+        @steps = Step.where(:user_id => current_user.id).order('rec_date DESC').page(params[:page]).per(20)
         @graph = graph_code()
       end
       format.mobile do
-        @steps = Step.find_all_by_user_id(current_user.id, :order => 'rec_date DESC')
+        @steps = Step.where(:user_id => current_user.id).order('rec_date DESC').page(params[:page]).per(20)
         @graph = graph_code()
       end
       format.xml  { render :xml => @steps }

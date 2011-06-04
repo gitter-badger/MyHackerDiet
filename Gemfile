@@ -9,10 +9,14 @@ gem 'mysql'
 gem 'devise'
 gem 'agnostic-will_paginate'
 gem 'wiscale'
+gem "kaminari"
 
 gem 'vlad'
 gem 'vlad-thin'
 gem 'vlad-git'
+
+gem 'newrelic_rpm'
+gem 'ruby-prof'
 
 # Use unicorn as the web server
 gem 'unicorn'

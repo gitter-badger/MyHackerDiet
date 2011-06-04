@@ -48,7 +48,9 @@ class User < ActiveRecord::Base
   end
 
   def graph_code( title, show_days, graph_size )
-    weights = Weight.find(:all, :conditions => ["user_id = ?", id], :order => 'rec_date ASC')   # get all the weights, not just this page
+    start_time = Time.now
+
+    weights = Weight.where(:user_id => id).where('rec_date > ?', show_days).order('rec_date ASC')
     weightDates = ''
     weightValues_below = ''
     weightValues_above = ''
@@ -99,6 +101,8 @@ class User < ActiveRecord::Base
     manchart_areafill = '&chm=b,0000FF,0,-1,10.0|b,80C65A,0,1,0|b,FF0000,1,2,0'
 
     url = manchart + weightValues_below.chop() + '|' + weightedDates.chop() + '|' + weightValues_above.chop() + manchart_suffix + weightDates + manchart_areafill
+
+    puts "Graph generated in: #{(Time.now - start_time).to_f.round(2)} ms"
 
     return url
   end

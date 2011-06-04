@@ -58,7 +58,7 @@ begin
 
 
     task :deploy do
-      ['update', 'migrate', 'unicorn_start'].each do |t|
+      ['update', 'migrate'].each do |t|
         Rake::Task["vlad:#{t}"].invoke
       end
     end

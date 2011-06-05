@@ -56,9 +56,12 @@ begin
       run "#{rvm_setup} && bundle exec unicorn -c /home/myhackerdiet/current/config/unicorn.rb -D"
     end
 
+    remote_task :unicorn_restart do
+      run "#{rvm_setup} && kill -USR2 `cat /home/myhackerdiet/shared/pids/myhackerdiet.pid`"
+    end
 
     task :deploy do
-      ['update', 'migrate'].each do |t|
+      ['update', 'migrate', 'unicorn_restart'].each do |t|
         Rake::Task["vlad:#{t}"].invoke
       end
     end

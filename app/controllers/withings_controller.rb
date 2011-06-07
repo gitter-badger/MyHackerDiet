@@ -1,7 +1,7 @@
 class WithingsController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [ :log ]
 
-  def show
+  def create
     @wlog = WithingsLog.new
 
     @wlog.userid = params[:userid]

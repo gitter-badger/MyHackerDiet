@@ -57,7 +57,7 @@ begin
     end
 
     remote_task :unicorn_restart do
-      run "#{rvm_setup} && kill -USR2 `cat /home/myhackerdiet/shared/pids/myhackerdiet.pid`"
+      run "#{rvm_setup} && kill -QUIT `cat /home/myhackerdiet/shared/pids/myhackerdiet.pid`"
     end
 
     task :deploy do

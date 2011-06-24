@@ -48,6 +48,7 @@
             Last Sign in: <%=h current_user.last_sign_in_at %>
           <% else %>
             <%= form_for("user", :url => user_session_path) do |f| %>
+              <%= f.hidden_field :remember_me %>
               <%= f.text_field :email, :placeholder => "Email Address", :size => 20 %><br />
               <%= f.password_field :password, :placeholder => "Password", :size => 20 %><br />
               <%= f.submit 'Login', :class => 'green awesome', :width => '100%' %>

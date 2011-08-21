@@ -4,7 +4,7 @@ set :user, 'myhackerdiet'
 set :revision, 'origin/master'
 
 task :production do
-  set :domain, 'myhackerdiet@clinton.digital-drip.com'
+  set :domain, 'myhackerdiet@adams.digital-drip.com'
   set :deploy_to, '/home/myhackerdiet'
 
   set :thin_socket, '/tmp/myhackerdiet.sock'

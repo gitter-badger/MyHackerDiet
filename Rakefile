@@ -60,6 +60,10 @@ begin
       run "#{rvm_setup} && kill -QUIT `cat /home/myhackerdiet/shared/pids/myhackerdiet.pid`"
     end
 
+    task :migrate do
+      run "#{rvm_setup} && bundle exec rake db:migrate"
+    end
+
     task :deploy do
       ['update', 'migrate', 'unicorn_restart'].each do |t|
         Rake::Task["vlad:#{t}"].invoke

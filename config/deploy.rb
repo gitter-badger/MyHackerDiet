@@ -12,3 +12,12 @@ task :production do
   set :web_command, ''
 end
 
+task :staging do
+  set :domain, 'mhd@hoover.digital-drip.com'
+  set :deploy_to, '/home/mhd'
+
+  set :thin_socket, '/tmp/mhd.sock'
+
+  set :web_command, ''
+end
+

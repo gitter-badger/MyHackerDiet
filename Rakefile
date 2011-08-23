@@ -18,7 +18,7 @@ Mhd::Application.load_tasks
 
 begin
   require 'vlad'
-  Vlad.load :scm => :git, :app => :thin
+  Vlad.load :scm => :git
 
   namespace :vlad do
     def rvm_setup

@@ -51,10 +51,10 @@ Mhd::Application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    :address              => "mail.digital-drip.com",
-    :port                 => 25,
-    :user_name            => 'jon',
-    :password             => 'MArasu9A',
+    :address              => "smtp.gmail.com",
+    :port                 => 587,
+    :user_name            => 'jgaudette@gmail.com',
+    :password             => 'dHv578&*',
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
 end

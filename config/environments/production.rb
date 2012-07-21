@@ -53,8 +53,8 @@ Mhd::Application.configure do
   config.action_mailer.smtp_settings = {
     :address              => "smtp.gmail.com",
     :port                 => 587,
-    :user_name            => 'jgaudette@gmail.com',
-    :password             => 'dHv578&*',
+    :user_name            => 'noreply@myhackerdiet.com',
+    :password             => 'X>Mh8mWW',
     :authentication       => 'plain',
     :enable_starttls_auto => true  }
 end

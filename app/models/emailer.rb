@@ -4,12 +4,14 @@ class Emailer < ActionMailer::Base
     @wlog = wlog
     @subject = subject
     @recipients = recipient
-    @from = 'no-reply@digital-drip.com'
+    @from = 'noreply@myhackerdiet.com'
     @sent_on = sent_at
     @content_type = 'text/html'
     @headers = { }
 
     default_url_options[:host] = 'myhackerdiet.com'
+    
+    mail(:from => @from, :to => @recipients, :subject => @subject)
   end
 
 

@@ -22,17 +22,11 @@ begin
 
   namespace :vlad do
     def rvm_setup
-      # loads RVM, which initializes environment and paths
-      init_rvm = "source /home/myhackerdiet/.rvm/scripts/rvm"
-
-      # automatically trust the gemset in the .rvmrc file
-      trust_rvm = "rvm rvmrc trust #{release_path}"
-
       # ya know, get to where we need to go
       # ex. /var/www/my_app/releases/12345
       goto_app_root = "cd #{'current'}"
 
-      return "#{init_rvm} && #{goto_app_root}"
+      return "#{goto_app_root}"
     end
 
     # run bundle install with explicit path and without test dependencies

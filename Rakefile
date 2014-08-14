@@ -4,15 +4,15 @@
 require File.expand_path('../config/application', __FILE__)
 require 'rake'
 
-#module ::Mhd
-  #class Application
-    #include Rake::DSL
-  #end
-#end
+module ::Mhd
+  class Application
+    include Rake::DSL
+  end
+end
 
-#module ::RakeFileUtils
-  #extend Rake::FileUtilsExt
-#end
+module ::RakeFileUtils
+  extend Rake::FileUtilsExt
+end
 
 Mhd::Application.load_tasks
 

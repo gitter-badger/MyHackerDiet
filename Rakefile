@@ -10,9 +10,9 @@ require 'rake'
   #end
 #end
 
-module ::RakeFileUtils
-  extend Rake::FileUtilsExt
-end
+#module ::RakeFileUtils
+  #extend Rake::FileUtilsExt
+#end
 
 Mhd::Application.load_tasks
 

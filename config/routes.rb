@@ -8,7 +8,7 @@ Mhd::Application.routes.draw do
   resources :withings_log
   resource :withings do
     get 'import'
-    put 'show'
+    post 'show'
   end
 
   match 'import_weight_csv', '/importWeight', :controller => 'weights', :action => 'csv_import'

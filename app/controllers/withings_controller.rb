@@ -2,11 +2,16 @@ class WithingsController < ApplicationController
   skip_before_filter :verify_authenticity_token, :only => [ :log ]
 
   def show
+    puts "in show"
+    puts "#{Time.now} - params were: #{params}"
     @wlog = WithingsLog.new
+
 
     @wlog.userid = params[:userid]
     @wlog.sdate = Time.at(params[:startdate].to_i)
     @wlog.edate = Time.at(params[:enddate].to_i)
+
+    puts "New WithingsLog: #{@wlog}"
 
     @wlog.save
     
@@ -33,6 +38,8 @@ class WithingsController < ApplicationController
   end
 
   def create
+    puts "in create"
+    puts "#{Time.now} - params were: #{params}"
     @wlog = WithingsLog.new
 
     @wlog.userid = params[:userid]

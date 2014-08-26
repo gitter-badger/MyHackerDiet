@@ -22,9 +22,6 @@ class WeightsController < ApplicationController
 
         @weights = Weight.where(:user_id => current_user.id).order('rec_date DESC').page(params[:page]).per(20)
       end
-      format.mobile do
-        @weights = Weight.find_all_by_user_id(current_user.id, :order => 'rec_date DESC')
-      end
       format.xml  { render :xml => @weights }
       format.csv do
         @weights = Weight.find(:all, :conditions => ["user_id = ?", current_user.id])   # get all the weights, not just this page
@@ -52,7 +49,6 @@ class WeightsController < ApplicationController
 
     respond_to do |format|
       format.html # show.html.erb
-      format.mobile # show.mobile.erb
       format.xml  { render :xml => @weight }
     end
   end
@@ -84,12 +80,9 @@ class WeightsController < ApplicationController
       if @weight.save
         flash[:notice] = 'Weight was successfully created.'
         format.html { redirect_to(weights_url) }
-        #format.mobile { redirect_to(root_url)  }
-        format.mobile { render :action => 'edit' }
         format.xml  { render :xml => @weight, :status => :created, :location => @weight }
       else
         format.html { render :action => "new" }
-        format.mobile { render :action => "index" }
         format.xml  { render :xml => @weight.errors, :status => :unprocessable_entity }
       end
     end

@@ -1,4 +1,8 @@
 class User < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :trackable, :validatable
   has_many :weights
   has_many :system_messages, :as => :messageable
   has_and_belongs_to_many :friends, :class_name => 'User', :foreign_key => :friend_id
@@ -8,11 +12,6 @@ class User < ActiveRecord::Base
   # :http_authenticatable, :token_authenticatable, :confirmable, :lockable, :timeoutable and :activatable
   devise :registerable, :database_authenticatable, :recoverable,
          :rememberable, :trackable, :validatable, :encryptable
-
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :dob, :height,
-    :sex, :withings_userid, :withings_publickey, :steps, :withings_email_alerts,
-    :public, :public_id
 
   def age
     age = Date.today.year - dob.year

@@ -15,10 +15,6 @@ class StepsController < ApplicationController
         @steps = Step.where(:user_id => current_user.id).order('rec_date DESC').page(params[:page]).per(20)
         @graph = graph_code()
       end
-      format.mobile do
-        @steps = Step.where(:user_id => current_user.id).order('rec_date DESC').page(params[:page]).per(20)
-        @graph = graph_code()
-      end
       format.xml  { render :xml => @steps }
       format.csv do
         @steps = Step.find(:all, :conditions => ["user_id = ?", current_user.id], :order => "rec_date");
@@ -42,7 +38,7 @@ class StepsController < ApplicationController
     totalSteps = []
     modSteps = []
 
-    steps = Step.find(:all, :conditions => ["user_id = ?", current_user.id], :order => "rec_date DESC", :limit => 20);
+    steps = Step.where(:user_id == current_user.id).order(:rec_date).limit(20)
 
     steps.reverse.each do |c|
       c.steps = c.steps == nil ? 0 : c.steps
@@ -61,7 +57,8 @@ class StepsController < ApplicationController
     data1 = ''
 
     recDates.each do |rd|
-      dates << '|' + rd.to_date.day.to_s
+      puts "rd is #{rd}"
+      dates << "|#{rd.to_date.day.to_s}" rescue 0
     end
 
     totalSteps.each do |ts|
@@ -114,7 +111,6 @@ end
       if @step.save
         flash[:notice] = 'Step was successfully created.'
         format.html { redirect_to(steps_url) }
-        format.mobile { render :action => 'edit' }
         format.xml  { render :xml => @step, :status => :created, :location => @step }
       else
         format.html { render :action => "new" }

@@ -1,9 +1,8 @@
-# Load the rails application
+# Load the Rails application.
 require File.expand_path('../application', __FILE__)
 
-# Initialize the rails application
-Mhd::Application.initialize!
-
+# Initialize the Rails application.
+Rails.application.initialize!
 
 RECTYPE = Hash.new
 RECTYPE['withings'] = 0

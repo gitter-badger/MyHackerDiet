@@ -67,9 +67,6 @@
               <li><%= link_to "Withings API Log", withings_log_index_path %></li>
             <% end %>
             <li><%= link_to "Logout", destroy_user_session_path %></li>
-            <% if mobile_device? %>
-              <li><%= link_to "Full Site", :mobile => 0 %></li>
-            <% end %>
           <% else %>
             <li><%= link_to 'Create an Account', new_user_registration_path %></li>
           <% end %>
@@ -107,13 +104,13 @@
             <% end %>
 
             <!-- SYSTEM and USER MESSAGES -->
-            <center>
-              <% if current_user %>
-                <%= system_messages_for(current_user) %>
-                <%= system_messages %>
-                <br />
-              <% end %>
-            </center>
+            <%#<center>%>
+              <%#<% if current_user %>%>
+                <%#<%= system_messages_for(current_user) %>%>
+                <%#<%= system_messages %>%>
+                <%#<br />%>
+              <%#<% end %>%>
+            <%#</center>%>
 
 
             <%= yield %>

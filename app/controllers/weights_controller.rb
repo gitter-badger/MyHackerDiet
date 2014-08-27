@@ -10,15 +10,15 @@ class WeightsController < ApplicationController
 
     respond_to do |format|
       format.html do
-        @graph_week = current_user.graph_code( 'Last Week', 1.week.ago, '400x150' )
-        @graph_two_weeks = current_user.graph_code( 'Last 2 Weeks', 2.weeks.ago, '400x150' )
-        @graph_two_months = current_user.graph_code( 'Last 2 Months', 2.months.ago, '400x150' )
-        @graph_three_months = current_user.graph_code( 'Last 3 Months', 3.months.ago, '400x150' )
+        @graph_one_week = "/weight_graphs/weight_graphs?title=Last Week&time=1.week.ago&size=400x150"
+        @graph_two_weeks = "/weight_graphs/weight_graphs?title=Two Weeks&time=2.weeks.ago&size=400x150"
+        @graph_two_months = "/weight_graphs/weight_graphs?title=Two Months&time=2.months.ago&size=400x150"
+        @graph_three_months = "/weight_graphs/weight_graphs?title=Three Months&time=3.months.ago&size=400x150"
 
-        @graph_week_big = current_user.graph_code( 'Last Week', 1.week.ago, '800x300' )
-        @graph_two_weeks_big = current_user.graph_code( 'Last 2 Weeks', 2.weeks.ago, '800x300' )
-        @graph_two_months_big = current_user.graph_code( 'Last 2 Months', 2.months.ago, '800x300' )
-        @graph_three_months_big = current_user.graph_code( 'Last 3 Months', 3.months.ago, '800x300' )
+        @graph_week_big = "/weight_graphs/weight_graphs?title=Last Week&time=1.week.ago&size=800x300"
+        @graph_two_weeks_big = "/weight_graphs/weight_graphs?title=Two Weeks&time=2.weeks.ago&size=800x300"
+        @graph_two_months_big = "/weight_graphs/weight_graphs?title=Two Months&time=2.months.ago&size=800x300"
+        @graph_three_months_big = "/weight_graphs/weight_graphs?title=Three Months&time=3.months.ago&size=800x300"
 
         @weights = Weight.where(:user_id => current_user.id).order('rec_date DESC').page(params[:page]).per(20)
       end
@@ -39,6 +39,17 @@ class WeightsController < ApplicationController
         send_data csv_string, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=weights.csv"
       end
     end
+  end
+
+  def weight_graphs
+    title = params[:title]
+    size  = params[:size]
+    time = params[:time]
+
+    time_str = time.split(".")[0].to_i.send(time.split(".")[1]).ago
+
+    g = current_user.graph_code(title, time_str, size)
+    send_data(g, :filename => "any.png", :type => 'image/png', :disposition=> 'inline')
   end
 
   #

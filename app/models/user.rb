@@ -103,7 +103,8 @@ class User < ActiveRecord::Base
 
     puts "Graph generated in: #{(Time.now - start_time).to_f.round(2)} ms"
 
-    return url
+    h = HTTParty.get(URI.encode(url))
+    return h.body
   end
 
   def update_publicid

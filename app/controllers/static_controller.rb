@@ -28,15 +28,15 @@ class StaticController < ApplicationController
         @current_diff = 0
       end
 
-        @graph_week = current_user.graph_code( 'Last Week', 1.week.ago, '400x150' )
-        @graph_two_weeks = current_user.graph_code( 'Last 2 Weeks', 2.weeks.ago, '400x150' )
-        @graph_two_months = current_user.graph_code( 'Last 2 Months', 2.months.ago, '400x150' )
-        @graph_three_months = current_user.graph_code( 'Last 3 Months', 3.months.ago, '400x150' )
+        @graph_one_week = "/weight_graphs/weight_graphs?title=Last Week&time=1.week.ago&size=400x150"
+        @graph_two_weeks = "/weight_graphs/weight_graphs?title=Two Weeks&time=2.weeks.ago&size=400x150"
+        @graph_two_months = "/weight_graphs/weight_graphs?title=Two Months&time=2.months.ago&size=400x150"
+        @graph_three_months = "/weight_graphs/weight_graphs?title=Three Months&time=3.months.ago&size=400x150"
 
-        @graph_week_big = current_user.graph_code( 'Last Week', 1.week.ago, '800x300' )
-        @graph_two_weeks_big = current_user.graph_code( 'Last 2 Weeks', 2.weeks.ago, '800x300' )
-        @graph_two_months_big = current_user.graph_code( 'Last 2 Months', 2.months.ago, '800x300' )
-        @graph_three_months_big = current_user.graph_code( 'Last 3 Months', 3.months.ago, '800x300' )
+        @graph_week_big = "/weight_graphs/weight_graphs?title=Last Week&time=1.week.ago&size=800x300"
+        @graph_two_weeks_big = "/weight_graphs/weight_graphs?title=Two Weeks&time=2.weeks.ago&size=800x300"
+        @graph_two_months_big = "/weight_graphs/weight_graphs?title=Two Months&time=2.months.ago&size=800x300"
+        @graph_three_months_big = "/weight_graphs/weight_graphs?title=Three Months&time=3.months.ago&size=800x300"
 
       # Step summary information
       begin

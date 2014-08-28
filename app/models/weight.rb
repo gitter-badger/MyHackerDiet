@@ -23,7 +23,7 @@ class Weight < ActiveRecord::Base
   end
 
   def fill_weight_gaps
-    max_rec = Weight.find_by_user_id(user_id, :limit => 1, :order => 'rec_date DESC')
+    max_rec = Weight.where(:user_id => user_id).order('rec_date DESC').take()
 
     if max_rec == nil || max_rec.rec_type == RECTYPE['filler'] || (max_rec.rec_date - rec_date).abs == 1
       return
@@ -53,7 +53,7 @@ class Weight < ActiveRecord::Base
   end
 
   def calc_avg_weight
-    datapool = Weight.find_all_by_user_id(user_id, :limit => 20, :conditions => ["rec_date <= ?", rec_date], :order => 'rec_date DESC')
+    datapool = Weight.where("user_id = ? && rec_date <= ?", user_id, rec_date).order('rec_date DESC').limit(20)
     self[:avg_weight] = averageweight datapool
     save
   end

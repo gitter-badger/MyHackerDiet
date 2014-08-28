@@ -11,7 +11,8 @@ timeout 300
 
 # This is where we specify the socket.
 # We will point the upstream Nginx module to this socket later on
-listen 3000, :backlog => 64
+#listen 3000, :backlog => 64
+listen "/tmp/myhackerdiet.sock", :backlog => 64
 
 pid "/home/myhackerdiet/shared/pids/myhackerdiet.pid"
 

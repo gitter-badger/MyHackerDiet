@@ -34,4 +34,5 @@ gem 'newrelic_rpm'
 group :development do
   gem 'capistrano3-unicorn'
   gem 'capistrano-rbenv'
+  gem 'capistrano-bundler'
 end

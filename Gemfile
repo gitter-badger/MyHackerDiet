@@ -36,3 +36,7 @@ group :development do
   gem 'capistrano-rbenv'
   gem 'capistrano-bundler'
 end
+
+group :production, :staging do
+  gem 'unicorn'
+end

@@ -84,7 +84,8 @@ class WeightsController < ApplicationController
   # POST /weights
   # POST /weights.xml
   def create
-    @weight = Weight.new(params[:weight])
+    @weight = Weight.new(weight_params)
+    @weight.user = current_user
     @weight.calc_avg_weight
 
     respond_to do |format|
@@ -129,6 +130,7 @@ class WeightsController < ApplicationController
   def destroy
     @weight = Weight.find(params[:id])
     @weight.destroy
+    flash[:notice] = 'Record successfully deleted'
 
     respond_to do |format|
       format.html { redirect_to(weights_url) }
@@ -181,5 +183,13 @@ class WeightsController < ApplicationController
 
     redirect_to weights_url
   end
+
+
+  private
+
+  def weight_params
+    params.require(:weight).permit(:rec_date, :weight, :bodyfat)
+  end
 end
+
 

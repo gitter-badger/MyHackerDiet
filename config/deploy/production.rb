@@ -17,6 +17,7 @@
 
 #server 'clinton.digital-drip.com', user: 'deploy', roles: %w{web app}, my_property: :my_value
 server 'clinton.digital-drip.com', user: 'myhackerdiet', roles: %w{web app db}
+set :rails_env, :production
 
 
 # Custom SSH Options

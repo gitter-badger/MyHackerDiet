@@ -1,5 +1,4 @@
 # config valid only for Capistrano 3.1
-#require 'capistrano-unicorn'
 
 lock '3.2.1'
 
@@ -49,10 +48,6 @@ namespace :deploy do
   end
 
   after :publishing, :restart
-  #after 'deploy:restart', 'unicorn:reload'
-  #after 'deploy:restart', 'unicorn:restart'
-  #after 'deploy:restart', 'unicorn:duplicate'
-
 
   after :restart, :clear_cache do
     on roles(:web), in: :groups, limit: 3, wait: 10 do
@@ -60,6 +55,13 @@ namespace :deploy do
       # within release_path do
       #   execute :rake, 'cache:clear'
       # end
+    end
+  end
+
+  after 'deploy:publishing', 'deploy:restart'
+  namespace :deploy do
+    task :restart do
+      invoke 'unicorn:restart'
     end
   end
 

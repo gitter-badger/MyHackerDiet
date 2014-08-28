@@ -32,6 +32,6 @@ gem 'kaminari'
 gem 'newrelic_rpm'
 
 group :development do
-  gem 'capistrano-unicorn', :require => false
+  gem 'capistrano3-unicorn'
   gem 'capistrano-rbenv'
 end

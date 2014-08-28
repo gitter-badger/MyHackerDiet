@@ -13,7 +13,6 @@ class StepsController < ApplicationController
     respond_to do |format|
       format.html do
         @steps = Step.where(:user_id => current_user.id).order('rec_date DESC').page(params[:page]).per(20)
-        @graph = graph_code()
       end
       format.xml  { render :xml => @steps }
       format.csv do
@@ -31,6 +30,12 @@ class StepsController < ApplicationController
         send_data csv_string, :type => 'text/csv; charset=iso-8859-1; header=present', :disposition => "attachment; filename=steps.csv"
       end
     end
+  end
+
+  def graph
+    graph = graph_code()
+    send_data(graph, :filename => "steps.png", :type => 'image/png', :disposition=> 'inline')
+
   end
 
   def graph_code
@@ -69,8 +74,10 @@ class StepsController < ApplicationController
       data1 << ms.to_s + ','
     end
 
-    return manchart + data1.chop + '|' + data.chop + manchart_suffix + dates
-#return url
+    url = manchart + data1.chop + '|' + data.chop + manchart_suffix + dates
+    puts "url is: #{url}"
+    h = HTTParty.get(URI.encode(url))
+    return h.body
 
 end
 
@@ -105,7 +112,8 @@ end
   # POST /steps
   # POST /steps.xml
   def create
-    @step = Step.new(params[:step])
+    @step = Step.new(step_params)
+    @step.user = current_user
 
     respond_to do |format|
       if @step.save
@@ -141,6 +149,7 @@ end
   def destroy
     @step = Step.find(params[:id])
     @step.destroy
+    flash[:notice] = 'Step was successfully deleted'
 
     respond_to do |format|
       format.html { redirect_to(steps_url) }
@@ -166,5 +175,11 @@ end
       flash[:notice]="CSV Import Successful,  #{n} new records added to data base"
     end
     redirect_to :action=>"index"
+  end
+
+  private
+
+  def step_params
+    params.require(:step).permit(:rec_date, :steps, :mod_steps, :mod_min)
   end
 end

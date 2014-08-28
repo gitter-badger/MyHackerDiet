@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   match 'withings_import' '/withings/import', :controller => 'withings', :action => 'import', :via => 'get'
 
   match 'weight_graphs' '/weight_graphs', :controller => 'weights', :action => 'weight_graphs', :via => 'get'
+  match 'steps_graph', '/steps_graph', :controller => 'steps', :action => 'graph', :via => 'get'
 
   get 'static/home'
   get 'static/about'

@@ -19,6 +19,9 @@
     <![endif]-->
     <!-- Scripts -->
     <script src="/javascripts/css_browser_selector.js"></script>
+
+    <%= javascript_include_tag "application" %>
+    <%= csrf_meta_tags %>
   </head>
   <body id="sub-page">
     <div style="position:absolute; right:0px; z-index:12;">
@@ -129,18 +132,6 @@
     </footer>
     <% if Rails.env == 'production' %>
       <%= render :partial => 'shared/analytics' %>
-
-      <script type="text/javascript">
-          var GoSquared={};
-          GoSquared.acct = "GSN-177788-K";
-          (function(w){
-              function gs(){
-                  w._gstc_lt=+(new Date); var d=document;
-                  var g = d.createElement("script"); g.type = "text/javascript"; g.async = true; g.src = "//d1l6p2sc9645hc.cloudfront.net/tracker.js";
-                  var s = d.getElementsByTagName("script")[0]; s.parentNode.insertBefore(g, s);
-              }
-              w.addEventListener?w.addEventListener("load",gs,false):w.attachEvent("onload",gs);
-          })(window);
       </script>
     <% end %>
   </body>

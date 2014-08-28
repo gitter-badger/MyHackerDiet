@@ -25,3 +25,5 @@ test:
 production:
   <<: *base
   database: mhd
+  username: jon
+  password: password

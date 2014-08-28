@@ -30,3 +30,8 @@ gem 'devise-encryptable'
 gem 'wiscale'
 gem 'kaminari'
 gem 'newrelic_rpm'
+
+group :development do
+  gem 'capistrano-unicorn', :require => false
+  gem 'capistrano-rbenv'
+end

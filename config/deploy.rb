@@ -4,16 +4,18 @@
 lock '3.2.1'
 
 set :application, 'my_app_name'
-set :repo_url, 'git@example.com:me/my_repo.git'
+set :repo_url, 'ssh://jon@horder.digital-drip.com/home/jon/git/myhackerdiet.git'
 
+set :rbenv_type, :local
+set :rbenv_ruby, '2.1.2'
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
 
 # Default deploy_to directory is /var/www/my_app
-# set :deploy_to, '/var/www/my_app'
+set :deploy_to, '/home/myhackerdiet/'
 
 # Default value for :scm is :git
-# set :scm, :git
+set :scm, :git
 
 # Default value for :format is :pretty
 # set :format, :pretty

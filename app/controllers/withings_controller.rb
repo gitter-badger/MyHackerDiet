@@ -1,5 +1,5 @@
 class WithingsController < ApplicationController
-  skip_before_filter :verify_authenticity_token, :only => [ :log ]
+  skip_before_filter :verify_authenticity_token
 
   def show
     puts "in show"

@@ -18,7 +18,7 @@
     <link rel="stylesheet" type="text/css" href="/stylesheets/ie7.css">
     <![endif]-->
     <!-- Scripts -->
-    <script src="/javascripts/css_browser_selector.js"></script>
+    <%#<script src="/javascripts/css_browser_selector.js"></script>%>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
     <%= javascript_include_tag "application", 'data-turbolinks-track' => true %>
@@ -131,9 +131,5 @@
     </div>
     <!-- bottom-footer END here -->
     </footer>
-    <% if Rails.env == 'production' %>
-      <%= render :partial => 'shared/analytics' %>
-      </script>
-    <% end %>
   </body>
 </html>

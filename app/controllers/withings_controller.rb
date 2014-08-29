@@ -60,7 +60,7 @@ class WithingsController < ApplicationController
       if user.withings_email_alerts
         logger.info "Emailing #{email_user} about withings event for #{@wlog.userid}"
         email_user = user.email
-        Emailer.deliver_contact(email_user, @wlog, "MyHackerDiet Event for User #{@wlog.userid}")
+        #Emailer.deliver_contact(email_user, @wlog, "MyHackerDiet Event for User #{@wlog.userid}")
       end
 
       logger.info "Retrieving withings data for user #{user.id} from #{@wlog.sdate} to #{@wlog.edate}"

@@ -5,7 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   has_many :weights
   has_many :system_messages, :as => :messageable
-  has_and_belongs_to_many :friends, :class_name => 'User', :foreign_key => :friend_id
   before_save :update_publicid
 
   # Include default devise modules. Others available are:

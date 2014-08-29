@@ -11,14 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20110523124931) do
+ActiveRecord::Schema.define(version: 20140829175549) do
+
+  create_table "sessions", force: true do |t|
+    t.integer  "person_id"
+    t.string   "ip_address"
+    t.string   "path"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "steps", force: true do |t|
     t.date     "rec_date"
     t.integer  "steps"
     t.integer  "mod_steps"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "mod_min"
     t.integer  "user_id"
   end
@@ -31,29 +39,35 @@ ActiveRecord::Schema.define(version: 20110523124931) do
     t.datetime "expires"
     t.integer  "messageable_id"
     t.string   "messageable_type"
-    t.datetime "created_at",                       null: false
-    t.datetime "updated_at",                       null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "system_messages", ["dismissed", "expires"], name: "viewable_index", using: :btree
   add_index "system_messages", ["messageable_type", "messageable_id"], name: "messageable", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "email",                              default: "", null: false
-    t.string   "encrypted_password",     limit: 128, default: "", null: false
+    t.string   "email",                             default: "", null: false
+    t.string   "encrypted_password",    limit: 128, default: "", null: false
+    t.string   "password_salt",                     default: "", null: false
     t.string   "confirmation_token"
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
+    t.string   "remember_token"
     t.datetime "remember_created_at"
-    t.integer  "sign_in_count",                      default: 0
+    t.integer  "sign_in_count",                     default: 0
     t.datetime "current_sign_in_at"
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
-    t.datetime "created_at",                                      null: false
-    t.datetime "updated_at",                                      null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
+    t.date     "dob"
+    t.string   "sex"
+    t.integer  "height"
+    t.string   "withings_userid"
+    t.string   "withings_publickey"
     t.boolean  "steps"
     t.boolean  "withings_email_alerts"
     t.boolean  "public"
@@ -65,17 +79,10 @@ ActiveRecord::Schema.define(version: 20110523124931) do
   add_index "users", ["public_id"], name: "index_users_on_public_id", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
-  create_table "users_users", id: false, force: true do |t|
-    t.integer  "user_id"
-    t.integer  "friend_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "weights", force: true do |t|
     t.date     "rec_date"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
     t.integer  "user_id"
     t.decimal  "weight",     precision: 12, scale: 2
     t.decimal  "bodyfat",    precision: 4,  scale: 2
@@ -83,21 +90,23 @@ ActiveRecord::Schema.define(version: 20110523124931) do
     t.integer  "rec_type"
   end
 
+  add_index "weights", ["user_id"], name: "weights_user_id", using: :btree
+
   create_table "withings", force: true do |t|
     t.integer  "userid"
     t.datetime "rec_date"
     t.decimal  "weight",     precision: 12, scale: 2
     t.decimal  "bodyfat",    precision: 12, scale: 2
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "withings_logs", force: true do |t|
     t.integer  "userid"
     t.datetime "sdate"
     t.datetime "edate"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
 end

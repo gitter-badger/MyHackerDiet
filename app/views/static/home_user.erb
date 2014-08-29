@@ -42,23 +42,6 @@
 </div>
 <div id='sidebar'>
   <div id="user_summaries">
-    <div class="container">
-      <ul>
-        <li class='widget'>
-        <div class="user_summary">
-          <div class="title">
-            <h4>Friends</h4>
-          </div>
-          <div class="content">
-            <%= '--- you have no friends ---' if current_user.friends.empty? %>
-            <% current_user.friends.each do |friend| %>
-              <%= link_to friend.email, "#{root_url}public/#{friend.public_id}" %> ( <%= friend.current_weight.avg_weight rescue "??" %> )
-            <% end %>
-          </div>
-        </div>
-        </li>
-      </ul>
-    </div>
     <!-- container START here -->
     <div class="container">
       <ul>

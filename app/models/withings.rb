@@ -50,11 +50,11 @@ class Withings < ActiveRecord::Base
       end
     end
 
-    recdates = Withings.find_all_by_userid(userid).collect{ |p| p.rec_date.to_date }
+    recdates = Withings.where(:userid => userid).collect{ |p| p.rec_date.to_date }
 
     # Insert weight records if they dont already exist
     recdates.reverse.each do |recdate|
-      weights = Weight.find(:all, :conditions => ["user_id = ? and rec_date = ?", uid, recdate], :order => 'rec_date ASC')
+      weights = Weight.where("user_id = ? and rec_date = ?", uid, recdate).order('rec_date ASC')
       total_manual = 0
 
       begin
@@ -68,7 +68,7 @@ class Withings < ActiveRecord::Base
       end
 
       #TODO remove outliers
-      logged = Withings.find(:all, :conditions => ["userid = ? and rec_date between ? and ?", userid, recdate, (recdate+1)])
+      logged = Withings.where("userid = ? and rec_date between ? and ?", userid, recdate, (recdate+1))
 
       if total_manual == 0 && logged.size > 0 then
         logger.info "Averaging #{recdate} with #{logged.size} withings records"

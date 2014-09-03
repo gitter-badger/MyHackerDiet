@@ -24,7 +24,7 @@ class WeightsController < ApplicationController
       end
       format.xml  { render :xml => @weights }
       format.csv do
-        @weights = Weight.find(:all, :conditions => ["user_id = ?", current_user.id])   # get all the weights, not just this page
+        @weights = Weight.where("user_id = ?", current_user.id)   # get all the weights, not just this page
 
         csv_string = CSV.generate do |csv|
           # header row

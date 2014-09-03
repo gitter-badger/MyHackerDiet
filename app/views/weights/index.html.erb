@@ -32,7 +32,6 @@
         <%= f.hidden_field :user_id, :value=>current_user.id %>
         <td class='colfirst'>&nbsp;</td>
         <td>&nbsp;</td>
-        <!-- <td><%= f.date_select :rec_date %></td> -->
         <td><%= select :weight, :rec_date, date_menu_items(Date.today-31, Date.today+1), :selected=>Date.today.to_s %>
         <td><%= f.text_field :weight, :size=>6 %></td>
         <td>&nbsp;</td>

@@ -107,14 +107,14 @@ class WeightsController < ApplicationController
     @weight.rec_type = RECTYPE['manual']
     @weight.calc_avg_weight
 
-    weights_after = Weight.find_all_by_user_id(current_user.id, :conditions => ["rec_date > ?", @weight.rec_date], :order => 'rec_date ASC')
+    weights_after = Weight.where("user_id = ? and rec_date > ?", current_user.id, @weight.rec_date).order('rec_date ASC')
     weights_after.each do |w|
       w.calc_avg_weight
       w.save
     end
 
     respond_to do |format|
-      if @weight.update_attributes(params[:weight])
+      if @weight.update_attributes(weight_params)
         flash[:notice] = 'Weight was successfully updated.'
         format.html { redirect_to(weights_url) }
         format.xml  { head :ok }
@@ -175,7 +175,7 @@ class WeightsController < ApplicationController
     end
 
     # Recalculate the average weight
-    weights_after = Weight.find_all_by_user_id(current_user.id, :order => 'rec_date ASC')
+    weights_after = Weight.where("user_id = ?", current_user.id).order('rec_date ASC')
     weights_after.each do |w|
       w.calc_avg_weight
       w.save
@@ -188,6 +188,7 @@ class WeightsController < ApplicationController
   private
 
   def weight_params
+    puts "params were: #{params[:weight]}"
     params.require(:weight).permit(:rec_date, :weight, :bodyfat)
   end
 end

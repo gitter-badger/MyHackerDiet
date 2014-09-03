@@ -1,23 +1,34 @@
 <h1>Editing weight</h1>
 
-<% form_for(@weight) do |f| %>
-  <%= f.error_messages %>
 
-  <p>
+<%= form_for(@weight) do |f| %>
+  <% if @weight.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@weight.errors.count, "error") %> prohibited this weight from being saved:</h2>
+
+      <ul>
+      <% @weight.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
     <%= f.label :rec_date %><br />
-    <%= f.date_select :rec_date %>
-  </p>
-  <p>
+    <%= select :weight, :rec_date, date_menu_items(Date.today-31, Date.today+1), :selected=>@weight.rec_date %>
+  </div>
+  <div class="field">
     <%= f.label :weight %><br />
     <%= f.text_field :weight %>
-  </p>
-  <p>
+  </div>
+  <div class="field">
     <%= f.label :bodyfat %><br />
     <%= f.text_field :bodyfat %>
-  </p>
-  <p>
-    <%= f.submit 'Update' %>
-  </p>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
 <% end %>
 
 <%= link_to 'Show', @weight %> |

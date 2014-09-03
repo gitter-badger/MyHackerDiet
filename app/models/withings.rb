@@ -78,8 +78,8 @@ class Withings < ActiveRecord::Base
         # that there should be just one.  No manual records are removed, however
         weights.each do |w| w.destroy end
 
-        avg_weight = Withings.average(:weight, :conditions => [ "userid = ? and rec_date between ? and ?", userid, recdate, recdate+1 ]).to_f
-        avg_bodyfat = Withings.average(:bodyfat, :conditions => [ "userid = ? and rec_date between ? and ?", userid, recdate, recdate+1 ]).to_f
+        avg_weight = Withings.where("userid = ? and rec_date between ? and ?", userid, recdate, recdate+1).average(:weight).to_f
+        avg_bodyfat = Withings.where("userid = ? and rec_date between ? and ?", userid, recdate, recdate+1).average(:bodyfat).to_f
 
         w = Weight.new
         w.rec_date = recdate

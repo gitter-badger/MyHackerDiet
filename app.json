@@ -1,0 +1,7 @@
+{
+  "name": "MyHackerDiet",
+  "description": "A RoR App to Manage your Hacker Diet",
+  "repository": "https://github.com/heroku/button-sample",
+  "logo": "http://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Ruby_on_Rails_logo.svg/260px-Ruby_on_Rails_logo.svg.png",
+  "keywords": ["rails", "hacker diet", "diet"]
+}

@@ -6,3 +6,4 @@ coverage*
 .bundle
 .rvmrc
 tmp
+config/database.yml

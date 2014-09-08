@@ -4,4 +4,3 @@ MyHackerDiet is a web application designed to help keep track of your weight pro
 
 http://myhackerdiet.com
 
-[![Deploy](https://www.herokucdn.com/deploy/button.png)](https://heroku.com/deploy)

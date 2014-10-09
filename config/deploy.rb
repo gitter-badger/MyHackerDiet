@@ -1,5 +1,4 @@
 # config valid only for Capistrano 3.1
-
 lock '3.2.1'
 
 set :application, 'my_app_name'
@@ -63,6 +62,20 @@ namespace :deploy do
     task :restart do
       invoke 'unicorn:restart'
     end
+
+    #task :symlink_db_yml do
+      #run "ln -s #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+    #end
+    #before 'bundler:install', 'deploy:symlink_db_yml'
   end
 
+  task :link_db do
+    on roles(:app) do
+      execute "ln -s #{shared_path}/config/database.yml #{release_path}/config/database.yml"
+      execute "ln -s #{shared_path}/config/skylight.yml #{release_path}/config/skylight.yml"
+    end
+  end
+
+  before "deploy:assets:precompile", "deploy:link_db"
 end
+

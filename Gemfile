@@ -30,6 +30,7 @@ gem 'devise-encryptable'
 gem 'wiscale'
 gem 'kaminari'
 gem 'newrelic_rpm'
+gem 'skylight'
 
 group :development do
   gem 'capistrano3-unicorn'

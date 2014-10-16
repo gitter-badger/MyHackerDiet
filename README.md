@@ -5,3 +5,5 @@ MyHackerDiet is a web application designed to help keep track of your weight pro
 
 http://myhackerdiet.com
 
+
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/JGaudette/MyHackerDiet?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
